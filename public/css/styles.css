@@ -1,0 +1,224 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: none;
+}
+body{
+    font-family: 'Do Hyeon', sans-serif;
+    color: rgb(39, 39, 39);
+    background: whitesmoke;
+}
+a{
+    text-decoration: none;
+}
+header{
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    border-bottom:  1px solid rgb(221, 221, 221);
+    box-shadow: 0px 1px 5px 0px rgb(224, 224, 224);
+    margin: 5px;
+}
+header a{
+    margin: 5px;
+}
+header a img{
+    width: 150px;
+    height: 50px;
+}
+header nav{
+    margin: 0px 20px;
+    box-sizing: content-box;
+}
+
+header nav button{
+    height: 64px;
+    padding: 0px 20px;
+    border: none;
+    outline: none;
+    font-size: 20px;
+    background: none;
+    text-decoration: none;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    transition: 0.2s;
+    color: rgb(39, 39, 39);
+    font-family: 'Noto Sans', sans-serif;
+}
+header nav button:hover{
+    border-bottom: 2px solid rgb(87, 146, 255);
+    background: whitesmoke;
+    cursor: pointer;
+}
+
+
+/*---------------------------------Container-------------------------------*/
+
+main{
+
+    padding: 10px;
+}
+main #container{
+
+    width: 100%;
+    display: flex;
+
+    justify-content: center;
+    flex-direction: column;
+
+
+}
+main #container h1{
+    width: 100%;
+    background: white;
+    border-radius: 3px;
+    text-align: center;
+    font-family: 'Red Hat Display', sans-serif;
+}
+main #container .data{
+    display: flex;
+    justify-content: center;
+}
+main #container .data div{
+    
+    width: 180px;
+    height: 100px;
+    text-align: center;
+    padding: 10px 0px;
+    margin: 20px;
+    border-radius: 5px;
+
+}
+main #container .data div h2{
+    padding: 18px;
+}
+main #container .data .infected{
+    background: rgba(247, 212, 205);
+}
+main #container .data .infected h2{
+    color: rgb(227, 64, 27);
+    font-family: 'Inter', sans-serif;
+}
+
+main #container .data .recovered{
+    background: rgba(197, 232, 215);
+}
+main #container .data .recovered h2{
+    color: rgb(63, 186, 123);
+    font-family: 'Inter', sans-serif;
+}
+main #container .data .deceased{
+    background: rgba(222, 222, 222);
+}
+main #container .data .deceased h2{
+    color: rgb(125, 125, 125);
+    font-family: 'Inter', sans-serif;
+}
+main #container .data .active{
+    background: rgba(190, 217, 237);
+}
+main #container .data .active h2{
+    color: rgb(21, 135, 207);
+    font-family: 'Inter', sans-serif;
+    
+}
+main #container .data .discarded{
+    background: rgb(235, 205, 247);
+}
+main #container .data .discarded h2{
+    color: rgb(156, 48, 199);
+    font-family: 'Inter', sans-serif;
+}
+
+
+
+
+
+main #container .graphics{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+main #container .graphics div{
+    text-align: center;
+    background: white;
+    margin: 0px 20px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px 1px rgb(202, 202, 202);
+}
+
+main #container .graphics canvas{
+    width: 500px !important;
+    height: 250px !important;
+}
+
+main #container .covInfo{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   font-family: 'Red Hat Display', sans-serif;
+   padding: 20px 0px;
+}
+main #container .covInfo h2{
+    width: 60%;
+
+}
+main #container .covInfo p{
+    width: 60%;
+}
+main #container .form{
+    display: flex;
+    justify-content: center;
+}
+main #container .form #form{
+    background: rgb(243, 243, 243);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 40px;
+    padding: 20px;
+    width: 270px;
+    text-align: center;
+    font-size: 25px;
+    font-family: 'Archivo Black', sans-serif;
+    border: 1px solid rgb(195, 223, 255);
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px 3px rgb(211, 227, 255);
+    color: rgb(71, 79, 88);
+}
+main #container .form #form i{
+    color: rgb(65, 65, 65);
+    font-size: 12px;
+    padding: 3px 7px;
+}
+main #container .form #form input{
+    outline: none;
+    height: 25px;
+    width: 200px;
+    border-radius: 3px;
+    font-size: 10px;
+    background: whitesmoke;
+    border: 1px solid rgb(217, 235, 255);
+    box-shadow: 2px 2px 10px 1px rgb(211, 227, 255);
+    margin: 0px auto 20px auto;
+    padding: 0px 10px;
+    
+}
+
+main #container .form #form button{
+    margin: 10px auto;
+    padding: 5px 10px;
+    font-size: 20px;
+    background: whitesmoke;
+    color: rgb(107, 147, 194);
+    border: 1px solid rgb(206, 220, 236);
+    border-radius: 4px;
+    transition: 0.3s;
+}
+main #container .form #form button:hover{
+    background-color: rgb(142, 185, 235);
+    border: 1px solid rgb(193, 227, 255);
+    color: white;
+    cursor: pointer;
+}

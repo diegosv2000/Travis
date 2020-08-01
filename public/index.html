@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>travis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!---------------------------------Firebase init------------------------------------------>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+    <!---------------------------------------------------------------------------------------->
+
+
+</head>
+<body>
+    
+    <header>
+        <a href="#"><img src="../img/Logo.png" alt="Logo"></a>
+        <nav>
+            <button class="buttonNav" onclick="Home()">Home</button>
+            <button class="buttonNav" onclick="RegLoc()">Registrar Local</button>
+            <button class="buttonNav" onclick="LogIn()">Iniciar Sesión</button>
+            <button class="buttonNav" onclick="SignIn()">Crear Cuenta</button>
+        </nav>
+    </header>
+    <main>
+        <div id="container">
+            <h1>CORONAVIRUS(COVID-19)</h1>
+            <div class="data">
+                <div class="infected">Casos Totales <h2>333867</h2> </div>
+                <div class="active">Casos Activos <h2>98377</h2>  </div>
+                <div class="recovered">Recuperados <h2>223261</h2> </div>
+                <div class="deceased">Fallecidos <h2>12156</h2> </div>
+                <div class="discarded">Descartados <h2>1630054</h2> </div>      
+            </div>
+            <div class="graphics">
+                <div>
+                    <p>CasosTotales vs CasosActivos vs Fallecidos</p>
+                    <canvas id="stat1"></canvas>
+                </div>
+                <div>
+                    <p>CasosPositivos vs PruebasDescartadas</p>
+                    <canvas id="stat2"></canvas>
+                </div>
+            </div>
+            <div class="covInfo">
+                <h2>CORONAVIRUS</h2>
+                <p>
+                    La COVID‑19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto
+                    más recientemente. Tanto este nuevo virus como la enfermedad que provoca eran desconocidos
+                    antes de que estallara el brote en Wuhan (China) en diciembre de 2019. Actualmente la 
+                    COVID‑19 es una pandemia que afecta a muchos países de todo el mundo. <br>
+                    Recomendaciones:
+                    <ul>
+                        <li>Lávese las manos con frecuencia. Use agua y jabón o un desinfectante de manos a base de alcohol.</li>
+                        <li>Manténgase a una distancia segura de cualquier persona que tosa o estornude.</li>
+                        <li>No se toque los ojos, la nariz o la boca.</li>
+                        <li>Cuando tosa o estornude, cúbrase la nariz y la boca con el codo flexionado o con un pañuelo.</li>
+                        <li>Quédese en casa si se siente mal.</li>
+                        <li>Si tiene fiebre, tos y dificultad para respirar, solicite atención médica. Llame con antelación.</li>
+                    </ul>
+    
+                </p>
+            </div>
+        </div>
+
+
+    </main>
+
+</body>
+<script src="../src/app.js"></script>
+<script src="../src/index.js"></script>
+</html>
