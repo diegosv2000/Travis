@@ -10,9 +10,19 @@ firebase.initializeApp({
     measurementId: "G-W3TV01JE6L"
 });
 var db = firebase.firestore();
+var userEmail;
+
+const dataV = {
+    Total : 407492,
+    Actives : 104556,
+    Recovered : 283915,
+    Deceased : 19021,
+    Discarded : 1975196
+}
+
 
 function Home(){
-    document.getElementById("container").innerHTML=' <h1>CORONAVIRUS(COVID-19)</h1><div class="data"><div class="infected">Casos Totales <h2>333867</h2> </div><div class="active">Casos Activos <h2>98377</h2>  </div><div class="recovered">Recuperados <h2>223261</h2> </div><div class="deceased">Fallecidos <h2>12156</h2> </div><div class="discarded">Descartados <h2>1630054</h2> </div></div><div class="graphics"><div><p>CasosTotales vs CasosActivos vs Fallecidos</p><canvas id="stat1"></canvas></div><div><p>CasosPositivos vs PruebasDescartadas</p><canvas id="stat2"></canvas></div></div><div class="covInfo"><h2>CORONAVIRUS</h2><p>La COVID‑19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto más recientemente. Tanto este nuevo virus como la enfermedad que provoca eran desconocidos antes de que estallara el brote en Wuhan (China) en diciembre de 2019. Actualmente la COVID‑19 es una pandemia que afecta a muchos países de todo el mundo. <br>Recomendaciones:<ul><li>Lávese las manos con frecuencia. Use agua y jabón o un desinfectante de manos a base de alcohol.</li><li>Manténgase a una distancia segura de cualquier persona que tosa o estornude.</li><li>No se toque los ojos, la nariz o la boca.</li><li>Cuando tosa o estornude, cúbrase la nariz y la boca con el codo flexionado o con un pañuelo.</li><li>Quédese en casa si se siente mal.</li><li>Si tiene fiebre, tos y dificultad para respirar, solicite atención médica. Llame con antelación.</li></ul></p></div> ';
+    document.getElementById("container").innerHTML=` <h1>CORONAVIRUS(COVID-19)</h1><div class="data"><div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div><div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div><div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div><div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div><div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div></div><div class="graphics"><div><p>CasosTotales vs CasosActivos vs Fallecidos</p><canvas id="stat1"></canvas></div><div><p>CasosPositivos vs PruebasDescartadas</p><canvas id="stat2"></canvas></div></div><div class="covInfo"><h2>CORONAVIRUS</h2><p>La COVID‑19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto más recientemente. Tanto este nuevo virus como la enfermedad que provoca eran desconocidos antes de que estallara el brote en Wuhan (China) en diciembre de 2019. Actualmente la COVID‑19 es una pandemia que afecta a muchos países de todo el mundo. <br>Recomendaciones:<ul><li>Lávese las manos con frecuencia. Use agua y jabón o un desinfectante de manos a base de alcohol.</li><li>Manténgase a una distancia segura de cualquier persona que tosa o estornude.</li><li>No se toque los ojos, la nariz o la boca.</li><li>Cuando tosa o estornude, cúbrase la nariz y la boca con el codo flexionado o con un pañuelo.</li><li>Quédese en casa si se siente mal.</li><li>Si tiene fiebre, tos y dificultad para respirar, solicite atención médica. Llame con antelación.</li></ul></p></div> `;
 
     Statistics();
 }
@@ -47,6 +57,7 @@ function RegLoc(){
     var addLocal = document.getElementById("addLocal");
     addLocal.addEventListener("click",SendLocalData)
 }
+
 function SendLocalData(){
     var telephone=document.getElementById("telephone").value;
     var name=document.getElementById("name").value;
@@ -71,10 +82,6 @@ function SendLocalData(){
 
 
 }
-
-
-
-
 
 function LogIn(){
     document.getElementById("container").innerHTML=`
@@ -113,8 +120,8 @@ function logInWithEmail(){
         // ...
     });
     console.log("Funciona");
+    userEmail = email;
 }
-
 
 function app(){
 
@@ -134,11 +141,11 @@ function app(){
                     <div id="container">
                     <h1>CORONAVIRUS(COVID-19)</h1>
                         <div class="data">
-                            <div class="infected">Casos Totales <h2>333867</h2> </div>
-                            <div class="active">Casos Activos <h2>98377</h2>  </div>
-                            <div class="recovered">Recuperados <h2>223261</h2> </div>
-                            <div class="deceased">Fallecidos <h2>12156</h2> </div>
-                            <div class="discarded">Descartados <h2>1630054</h2> </div>      
+                            <div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div>
+                            <div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div>
+                            <div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div>
+                            <div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div>
+                            <div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div>      
                             </div>
                             <div class="graphics">
                             <div>
@@ -189,6 +196,7 @@ function app(){
             var isAnonymous = user.isAnonymous;
             var uid = user.uid;
             var providerData = user.providerData;
+            userEmail=email;
             // ...
         } else {
             document.getElementById("pageContainer").innerHTML=`
@@ -205,11 +213,11 @@ function app(){
             <div id="container">
                 <h1>CORONAVIRUS(COVID-19)</h1>
                 <div class="data">
-                    <div class="infected">Casos Totales <h2>333867</h2> </div>
-                    <div class="active">Casos Activos <h2>98377</h2>  </div>
-                    <div class="recovered">Recuperados <h2>223261</h2> </div>
-                    <div class="deceased">Fallecidos <h2>12156</h2> </div>
-                    <div class="discarded">Descartados <h2>1630054</h2> </div>      
+                    <div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div>
+                    <div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div>
+                    <div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div>
+                    <div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div>
+                    <div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div>      
                 </div>
                 <div class="graphics">
                     <div>
@@ -285,6 +293,7 @@ function SignIn(){
     addUser.addEventListener("click",addNewUser)
 
 }
+
 function addNewUser(){
     var name = document.getElementById("name").value;
     var lName = document.getElementById("lName").value;
@@ -323,18 +332,91 @@ function RegEn_Ex(){
             <div id="form">
                 <label for="telephone">Ingresar Telefono</label>
                 <div>
-                    <i class="fas fa-phone"></i><input type="number" placeholder="4168523" name="telephone" required>
+                    <i class="fas fa-phone"></i><input type="number" placeholder="4168523" name="telephone" id="phone" required>
                 </div>
-                <button id="recVisit">Registrar Entrada</button>
+                <button id="recEntry">Registrar Entrada</button>
             </div>
         </div>
     `;
+    var button=document.getElementById("recEntry");
+    var entry;
+    var departure;
+    button.onclick = function (){
+        var phone = document.getElementById("phone").value;
+        entry = new Date();
+        document.getElementById("container").innerHTML=`
+            <h1>¡Registra tu visita!</h1>
+            <div class="form">
+                <div id="form">
+                    <button id="recDeparture">Registrar Salida</button>
+                </div>
+            </div>
+        `;
+        var button2 = document.getElementById("recDeparture");
+        button2.onclick = function (){
+            departure = new Date();
+            console.log("Entrada: ",entry);
+            console.log("Salida: ",departure);
+            swal("Registered", "Registro de visita completada con éxito", "success");
+/////////////////////////////////////////////////////////////////////////////////            
+            //Add New Visit
+            db.collection("visit").add({
+                Email : userEmail,
+                IDLocal : phone,
+                dateDay : entry.getDate(),
+                dateMonth : entry.getMonth(),
+                dateYear : entry.getFullYear(),
+                entryHours : entry.getHours(),
+                entryMinutes : entry.getMinutes(),
+                departureHours : departure.getHours(),
+                departureMinutes : departure.getMinutes()
+                
+            })
+            .then(function(docRef) {
+                console.log("Document written with ID: ", docRef.id);
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+            });
+/////////////////////////////////////////////////////////////////////////////////
+            RegEn_Ex();
+        }
+        
+    }
+
+
+
 }
+
 function Hist(){
     document.getElementById("container").innerHTML=`
-
+    <h1>Historial de Visitas</h1>
+    <div id="table">
+        <table>
+            <thead>
+                <th>ID Local</th> <th>Hora de entrada</th> <th>Hora de salida</th> <th>Fecha</th>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
     `;
+    document.getElementById("tbody").innerHTML="";
+    db.collection("visit").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            
+            if(userEmail == doc.data().Email){
+                document.getElementById("tbody").innerHTML+=`
+                <tr>
+                    <td>${doc.data().IDLocal}</td> <td>${doc.data().entryHours}:${doc.data().entryMinutes}</td> <td>${doc.data().departureHours}:${doc.data().departureMinutes}</td> <td>${doc.data().dateDay}/${doc.data().dateMonth +1}/${doc.data().dateYear} </td> 
+                </tr> 
+                `;
+            }
+
+        });
+    });
 }
+
 function SignOut(){
     firebase.auth().signOut().then(function(){
         console.log("Cerraste Sesión");
@@ -342,6 +424,7 @@ function SignOut(){
         console.log(error)
     })
 }
+
 function Statistics(){
     var ctx= document.getElementById("stat1").getContext("2d");
     var myChart= new Chart(ctx,{
@@ -350,7 +433,7 @@ function Statistics(){
         labels:['Casos Totales','Recuperados','Fallecidos'],
         datasets:[{
                 label:'Num datos',
-                data:[333867,223261,12156],
+                data:[dataV.Total,dataV.Recovered,dataV.Deceased],
                 backgroundColor:[
                     'rgba(247, 212, 205)',
                     'rgba(197, 232, 215)',
@@ -374,7 +457,7 @@ function Statistics(){
         labels:['Casos Positivos','Pruebas Descartadas'],
         datasets:[{
                 label:'Num datos',
-                data:[333867,1630054],
+                data:[dataV.Total,dataV.Discarded],
                 backgroundColor:[
                     'rgba(247, 212, 205)',
                     'rgba(235, 205, 247)'
