@@ -16,7 +16,10 @@ header{
     display: flex;
     justify-content: space-between;
     border-bottom:  1px solid rgb(221, 221, 221);
-    box-shadow: 0px 1px 5px 0px rgb(224, 224, 224);
+    box-shadow: 0px 1px 5px 0px rgba(39, 39, 39, 0.226);
+    width: 100vw;
+    position: fixed;
+
 }
 header a{
     margin: 5px;
@@ -49,9 +52,7 @@ header nav button:hover{
     cursor: pointer;
 }
 
-
 /*---------------------------------Container-------------------------------*/
-
 main{
 
     padding: 10px;
@@ -128,10 +129,6 @@ main #container .data .discarded h2{
     font-family: 'Inter', sans-serif;
 }
 
-
-
-
-
 main #container .graphics{
     width: 100%;
     display: flex;
@@ -144,14 +141,13 @@ main #container .graphics div{
     margin: 0px 20px;
     padding: 10px;
     border-radius: 5px;
-    box-shadow: 1px 1px 5px 1px rgb(202, 202, 202);
+    box-shadow: 1px 1px 10px 1px rgba(27, 27, 27, 0.3);
 }
 
 main #container .graphics canvas{
     width: 500px !important;
     height: 250px !important;
 }
-
 main #container .covInfo{
    display: flex;
    flex-wrap: wrap;
@@ -192,7 +188,6 @@ main #container .form #form i{
     padding: 3px 7px;
 }
 main #container .form #form input{
-    outline: none;
     height: 25px;
     width: 200px;
     border-radius: 3px;

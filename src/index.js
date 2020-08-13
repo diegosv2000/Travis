@@ -74,7 +74,7 @@ function SendLocalData(){
     .catch(function(error) {
         console.error("Error adding document: ", error);
     });
-    swal("Registered", "Successfully Registered Data", "success");
+    swal("", "Local Registrado", "success");
 
     document.getElementById("telephone").value="";
     document.getElementById("name").value="";
@@ -258,6 +258,8 @@ function app(){
 }
 app();
 
+
+//------------------------------------------- Sign In ------------------------------------------------
 function SignIn(){
     document.getElementById("container").innerHTML=`
     <h1>Crear Cuenta</h1>
@@ -293,7 +295,7 @@ function SignIn(){
     addUser.addEventListener("click",addNewUser)
 
 }
-
+//----------------------------------------- Add New User ---------------------------------------------
 function addNewUser(){
     var name = document.getElementById("name").value;
     var lName = document.getElementById("lName").value;
@@ -318,32 +320,103 @@ function addNewUser(){
         // ...
     });
 
-    swal("Registered", "Successfully Registered Data", "success");
+    swal("", "Datos Registrados", "success");
     document.getElementById("name").value = "";
     document.getElementById("lName").value = "";
     document.getElementById("email").value = "";
     document.getElementById("psw").value = "";
 }
 
+
+//------------------------------------ Check in and out ----------------------------------------------
 function RegEn_Ex(){
-    document.getElementById("container").innerHTML=`
-        <h1>¡Registra tu visita!</h1>
-        <div class="form">
-            <div id="form">
-                <label for="telephone">Ingresar Telefono</label>
-                <div>
-                    <i class="fas fa-phone"></i><input type="number" placeholder="4168523" name="telephone" id="phone" required>
+
+    if( localStorage.getItem("entryDay") === null ){
+        document.getElementById("container").innerHTML=`
+            <h1>¡Registra tu visita!</h1>
+            <div class="form">
+                <div id="form">
+                    <label for="telephone">Ingresar Telefono</label>
+                    <div>
+                        <i class="fas fa-phone"></i><input type="number" placeholder="4168523" name="telephone" id="phone" required>
+                    </div>
+                    <button id="recEntry">Registrar Entrada</button>
                 </div>
-                <button id="recEntry">Registrar Entrada</button>
             </div>
-        </div>
-    `;
-    var button=document.getElementById("recEntry");
-    var entry;
-    var departure;
-    button.onclick = function (){
-        var phone = document.getElementById("phone").value;
-        entry = new Date();
+        `;
+        var button=document.getElementById("recEntry");
+        var entry;
+        var departure;
+        button.onclick = function (){
+            
+            var phone = document.getElementById("phone").value;
+            
+            entry = new Date();
+            var entryDay,entryMonth,entryYear,entryHour,entryMinute;
+            entryDay = entry.getDate();
+            entryMonth = entry.getMonth();
+            entryYear = entry.getFullYear();
+            entryHour = entry.getHours();
+            entryMinute = entry.getMinutes();
+
+            //----We store the data in the local storage----
+            localStorage.setItem("entryDay",entryDay);
+            localStorage.setItem("entryMonth",entryMonth);
+            localStorage.setItem("entryYear",entryYear);
+            localStorage.setItem("entryHour",entryHour);
+            localStorage.setItem("entryMinute",entryMinute);
+            localStorage.setItem("phone",phone);
+
+            document.getElementById("container").innerHTML=`
+                <h1>¡Registra tu visita!</h1>
+                <div class="form">
+                    <div id="form">
+                        <button id="recDeparture">Registrar Salida</button>
+                    </div>
+                </div>
+            `;
+            //----------------Registrar Salida-------------------
+            var button2 = document.getElementById("recDeparture");
+            button2.onclick = function (){
+                
+                departure = new Date();
+                swal("", "Visita Registrada", "success");           
+                //Add New Visit
+                db.collection("visit").add({
+                    Email : userEmail,
+                    IDLocal : phone,
+    
+                    dateDay : entry.getDate(),
+                    dateMonth : entry.getMonth(),
+                    dateYear : entry.getFullYear(),
+    
+                    entryHours : entry.getHours(),
+                    entryMinutes : entry.getMinutes(),
+    
+                    departureHours : departure.getHours(),
+                    departureMinutes : departure.getMinutes()
+                    
+                })
+                .then(function(docRef) {
+                    console.log("Document written with ID: ", docRef.id);
+                })
+                .catch(function(error) {
+                    console.error("Error adding document: ", error);
+                });
+
+                localStorage.removeItem("entryDay");
+                localStorage.removeItem("entryMonth");
+                localStorage.removeItem("entryYear");
+                localStorage.removeItem("entryHour");
+                localStorage.removeItem("entryMinute");
+                localStorage.removeItem("phone");
+
+                RegEn_Ex();
+            }
+            
+        }
+
+    }else{
         document.getElementById("container").innerHTML=`
             <h1>¡Registra tu visita!</h1>
             <div class="form">
@@ -352,22 +425,34 @@ function RegEn_Ex(){
                 </div>
             </div>
         `;
+
+        //---------------- Register Exit -------------------
         var button2 = document.getElementById("recDeparture");
         button2.onclick = function (){
+            
+            var day,month,year,hour,minute,phoneID;
+
+            day = parseInt( localStorage.getItem("entryDay") );
+            month = parseInt( localStorage.getItem("entryMonth") );
+            year = parseInt( localStorage.getItem("entryYear") );
+            hour = parseInt( localStorage.getItem("entryHour") );
+            minute = parseInt( localStorage.getItem("entryMinute") );
+            phoneID = parseInt( localStorage.getItem("phone") );
+
             departure = new Date();
-            console.log("Entrada: ",entry);
-            console.log("Salida: ",departure);
-            swal("Registered", "Registro de visita completada con éxito", "success");
-/////////////////////////////////////////////////////////////////////////////////            
+            swal("", "Visita Registrada", "success");           
             //Add New Visit
             db.collection("visit").add({
                 Email : userEmail,
-                IDLocal : phone,
-                dateDay : entry.getDate(),
-                dateMonth : entry.getMonth(),
-                dateYear : entry.getFullYear(),
-                entryHours : entry.getHours(),
-                entryMinutes : entry.getMinutes(),
+                IDLocal : phoneID,
+
+                dateDay : day,
+                dateMonth : month,
+                dateYear : year,
+
+                entryHours : hour,
+                entryMinutes : minute,
+
                 departureHours : departure.getHours(),
                 departureMinutes : departure.getMinutes()
                 
@@ -378,16 +463,30 @@ function RegEn_Ex(){
             .catch(function(error) {
                 console.error("Error adding document: ", error);
             });
-/////////////////////////////////////////////////////////////////////////////////
+
+            localStorage.removeItem("entryDay");
+            localStorage.removeItem("entryMonth");
+            localStorage.removeItem("entryYear");
+            localStorage.removeItem("entryHour");
+            localStorage.removeItem("entryMinute");
+            localStorage.removeItem("phone");
+
             RegEn_Ex();
         }
-        
     }
+
+
+
+
+
+
 
 
 
 }
 
+
+//------------------------------------------ History -------------------------------------------------
 function Hist(){
     document.getElementById("container").innerHTML=`
     <h1>Historial de Visitas</h1>
