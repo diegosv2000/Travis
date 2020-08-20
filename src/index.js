@@ -17,7 +17,8 @@ const dataV = {
     Actives : 104556,
     Recovered : 283915,
     Deceased : 19021,
-    Discarded : 1975196
+    Discarded : 1975196,
+    Lethality: 4.85
 }
 
 
@@ -127,15 +128,19 @@ function app(){
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+            document.getElementById("pushbarMenu").innerHTML=`
+            
+
+                <button class="buttonNav" onclick="Home()">Home</button>
+                <button class="buttonNav" onclick="RegEn_Ex()">Registrar Visita</button>
+                <button class="buttonNav" onclick="Hist()">Historial</button>
+                <button class="buttonNav" onclick="SignOut()">Cerrar Sesión</button>
+        
+            
+            `;
             document.getElementById("pageContainer").innerHTML=`
                 <header>
                     <a href="#"><img src="../img/Logo.png" alt="Logo"></a>
-                    <nav>
-                        <button class="buttonNav" onclick="Home()">Home</button>
-                        <button class="buttonNav" onclick="RegEn_Ex()">Registrar Visita</button>
-                        <button class="buttonNav" onclick="Hist()">Historial</button>
-                        <button class="buttonNav" onclick="SignOut()">Cerrar Sesión</button>
-                    </nav>
                 </header>
                 <main>
                     <div id="container">
@@ -144,9 +149,11 @@ function app(){
                             <div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div>
                             <div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div>
                             <div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div>
+
                             <div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div>
-                            <div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div>      
-                            </div>
+                            <div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div>
+                            <div class="lethality">Letalidad <h2>${dataV.Lethality}%</h2> </div>          
+                        </div>
                             <div class="graphics">
                             <div>
                             <p>CasosTotales vs CasosActivos vs Fallecidos</p>
@@ -158,27 +165,24 @@ function app(){
                             </div>
                             </div>
                             <div class="covInfo">
-                            <h2>CORONAVIRUS</h2>
-                            <p>
-                            La COVID‑19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto
-                            más recientemente. Tanto este nuevo virus como la enfermedad que provoca eran desconocidos
-                            antes de que estallara el brote en Wuhan (China) en diciembre de 2019. Actualmente la 
-                            COVID‑19 es una pandemia que afecta a muchos países de todo el mundo. <br>
-                            Recomendaciones:
-                            <ul>
-                            <li>Lávese las manos con frecuencia. Use agua y jabón o un desinfectante de manos a base de alcohol.</li>
-                            <li>Manténgase a una distancia segura de cualquier persona que tosa o estornude.</li>
-                            <li>No se toque los ojos, la nariz o la boca.</li>
-                            <li>Cuando tosa o estornude, cúbrase la nariz y la boca con el codo flexionado o con un pañuelo.</li>
-                            <li>Quédese en casa si se siente mal.</li>
-                            <li>Si tiene fiebre, tos y dificultad para respirar, solicite atención médica. Llame con antelación.</li>
-                            </ul>
-
-                            </p>
-                        </div>
+                                <h2>CORONAVIRUS</h2>
+                                <p>
+                                La COVID‑19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto
+                                más recientemente. Tanto este nuevo virus como la enfermedad que provoca eran desconocidos
+                                antes de que estallara el brote en Wuhan (China) en diciembre de 2019. Actualmente la 
+                                COVID‑19 es una pandemia que afecta a muchos países de todo el mundo. <br>
+                                Recomendaciones:
+                                    <ul>
+                                        <li>Lávese las manos con frecuencia. Use agua y jabón o un desinfectante de manos a base de alcohol.</li>
+                                        <li>Manténgase a una distancia segura de cualquier persona que tosa o estornude.</li>
+                                        <li>No se toque los ojos, la nariz o la boca.</li>
+                                        <li>Cuando tosa o estornude, cúbrase la nariz y la boca con el codo flexionado o con un pañuelo.</li>
+                                        <li>Quédese en casa si se siente mal.</li>
+                                        <li>Si tiene fiebre, tos y dificultad para respirar, solicite atención médica. Llame con antelación.</li>
+                                    </ul>
+                                </p>
+                            </div>
                     </div>
-
-
                 </main>
             
             
@@ -199,58 +203,64 @@ function app(){
             userEmail=email;
             // ...
         } else {
-            document.getElementById("pageContainer").innerHTML=`
-            <header>
-            <a href="#"><img src="../img/Logo.png" alt="Logo"></a>
-            <nav>
+            document.getElementById("pushbarMenu").innerHTML=`
+            
                 <button class="buttonNav" onclick="Home()">Home</button>
                 <button class="buttonNav" onclick="RegLoc()">Registrar Local</button>
                 <button class="buttonNav" onclick="LogIn()">Iniciar Sesión</button>
                 <button class="buttonNav" onclick="SignIn()">Crear Cuenta</button>
-            </nav>
-        </header>
-        <main>
-            <div id="container">
-                <h1>CORONAVIRUS(COVID-19)</h1>
-                <div class="data">
-                    <div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div>
-                    <div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div>
-                    <div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div>
-                    <div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div>
-                    <div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div>      
-                </div>
-                <div class="graphics">
-                    <div>
-                        <p>CasosTotales vs CasosActivos vs Fallecidos</p>
-                        <canvas id="stat1"></canvas>
-                    </div>
-                    <div>
-                        <p>CasosPositivos vs PruebasDescartadas</p>
-                        <canvas id="stat2"></canvas>
-                    </div>
-                </div>
-                <div class="covInfo">
-                    <h2>CORONAVIRUS</h2>
-                    <p>
-                        La COVID‑19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto
-                        más recientemente. Tanto este nuevo virus como la enfermedad que provoca eran desconocidos
-                        antes de que estallara el brote en Wuhan (China) en diciembre de 2019. Actualmente la 
-                        COVID‑19 es una pandemia que afecta a muchos países de todo el mundo. <br>
-                        Recomendaciones:
-                        <ul>
-                            <li>Lávese las manos con frecuencia. Use agua y jabón o un desinfectante de manos a base de alcohol.</li>
-                            <li>Manténgase a una distancia segura de cualquier persona que tosa o estornude.</li>
-                            <li>No se toque los ojos, la nariz o la boca.</li>
-                            <li>Cuando tosa o estornude, cúbrase la nariz y la boca con el codo flexionado o con un pañuelo.</li>
-                            <li>Quédese en casa si se siente mal.</li>
-                            <li>Si tiene fiebre, tos y dificultad para respirar, solicite atención médica. Llame con antelación.</li>
-                        </ul>
-        
-                    </p>
-                </div>
-            </div>
 
-        </main>  
+            `;
+            document.getElementById("pageContainer").innerHTML=`
+                <header>
+                    <a href="#"><img src="../img/Logo.png" alt="Logo"></a>
+                </header>
+                <main>
+                    <div id="container">
+                    <h1>CORONAVIRUS(COVID-19)</h1>
+                        <div class="data">
+
+                            
+                                <div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div>
+                                <div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div>
+                                <div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div>
+
+                                <div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div>
+                                <div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div>
+                                <div class="lethality">Letalidad <h2>${dataV.Lethality}%</h2> </div>     
+
+                        </div>
+                            <div class="graphics">
+                            <div>
+                            <p>CasosTotales vs CasosActivos vs Fallecidos</p>
+                            <canvas id="stat1"></canvas>
+                            </div>
+                            <div>
+                            <p>CasosPositivos vs PruebasDescartadas</p>
+                            <canvas id="stat2"></canvas>
+                            </div>
+                            </div>
+                            <div class="covInfo">
+                                <h2>CORONAVIRUS</h2>
+                                <p>
+                                La COVID‑19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto
+                                más recientemente. Tanto este nuevo virus como la enfermedad que provoca eran desconocidos
+                                antes de que estallara el brote en Wuhan (China) en diciembre de 2019. Actualmente la 
+                                COVID‑19 es una pandemia que afecta a muchos países de todo el mundo. <br>
+                                Recomendaciones:
+                                </p>
+                                <ul>
+                                    <li>Lávese las manos con frecuencia. Use agua y jabón o un desinfectante de manos a base de alcohol.</li>
+                                    <li>Manténgase a una distancia segura de cualquier persona que tosa o estornude.</li>
+                                    <li>No se toque los ojos, la nariz o la boca.</li>
+                                    <li>Cuando tosa o estornude, cúbrase la nariz y la boca con el codo flexionado o con un pañuelo.</li>
+                                    <li>Quédese en casa si se siente mal.</li>
+                                    <li>Si tiene fiebre, tos y dificultad para respirar, solicite atención médica. Llame con antelación.</li>
+                                </ul>
+                                
+                            </div>
+                    </div>
+                </main>
             `;
             Statistics();
         }
@@ -266,14 +276,19 @@ function SignIn(){
     <div class="form">
         <div id="form">            
             
-            <label for="name">Nombres</label>
+            <label for="dni">DNI</label>
             <div>
-            <i class="fas fa-user"></i></i><input type="text" placeholder="Diego" name="name" id="name" required>
+            <i class="fas fa-id-card"></i></i><input type="number" placeholder="72365298" name="dni" id="dni"  required>
+            </div>
+
+            <label for="phone">Celular</label>
+            <div>
+            <i class="fas fa-mobile"></i></i><input type="number" placeholder="963852741" name="phone" id="phone"  required>
             </div>
             
-            <label for="lname">Apellidos</label>
+            <label for="adress">Dirección</label>
             <div>
-            <i class="fas fa-user"></i></i><input type="text" placeholder="Salvador" name="lName" id="lName"  required>
+            <i class="fas fa-map-marker-alt"></i></i><input type="text" placeholder="Av. Brasil 769-Referencia:..." name="adress" id="adress"  required>
             </div>
 
             <label for="email">Email</label>
@@ -297,14 +312,20 @@ function SignIn(){
 }
 //----------------------------------------- Add New User ---------------------------------------------
 function addNewUser(){
-    var name = document.getElementById("name").value;
-    var lName = document.getElementById("lName").value;
+
+    var dni=document.getElementById("dni").value;
+    var adress=document.getElementById("adress").value;
+    var phone=document.getElementById("phone").value;
+
     var email = document.getElementById("email").value;
     var psw = document.getElementById("psw").value;
+
+
     db.collection("users").add({
-        Name: name,
-        LName: lName,
-        Email: email,
+        DNI: dni,
+        Phone: phone,
+        Adress: adress,
+        Email: email
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);

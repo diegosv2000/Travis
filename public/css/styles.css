@@ -5,7 +5,7 @@
 }
 body{
     font-family: 'Do Hyeon', sans-serif;
-    color: rgb(39, 39, 39);
+    color: rgb(49, 49, 49);
     background: whitesmoke;
 }
 a{
@@ -15,10 +15,11 @@ header{
     background: white;
     display: flex;
     justify-content: space-between;
+    border: none;
     border-bottom:  1px solid rgb(221, 221, 221);
     box-shadow: 0px 1px 5px 0px rgba(39, 39, 39, 0.226);
-    width: 100vw;
-    position: fixed;
+    width: 100%;
+
 
 }
 header a{
@@ -28,29 +29,7 @@ header a img{
     width: 150px;
     height: 50px;
 }
-header nav{
-    margin: 0px 20px;
-    box-sizing: content-box;
-}
 
-header nav button{
-    height: 64px;
-    padding: 0px 20px;
-    border: none;
-    outline: none;
-    font-size: 20px;
-    background: none;
-    text-decoration: none;
-    border-bottom: 2px solid rgb(255, 255, 255);
-    transition: 0.2s;
-    color: rgb(39, 39, 39);
-    font-family: 'Noto Sans', sans-serif;
-}
-header nav button:hover{
-    border-bottom: 2px solid rgb(87, 146, 255);
-    background: whitesmoke;
-    cursor: pointer;
-}
 
 /*---------------------------------Container-------------------------------*/
 main{
@@ -61,13 +40,12 @@ main #container{
 
     width: 100%;
     display: flex;
-
+    flex-wrap: wrap;
     justify-content: center;
-    flex-direction: column;
-
 
 }
 main #container h1{
+    margin: 5px 0px;
     width: 100%;
     background: white;
     border-radius: 3px;
@@ -76,19 +54,24 @@ main #container h1{
 }
 main #container .data{
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    width: 1050px;
+    padding: 10px;
+    margin: 5px 0px;
 }
+
 main #container .data div{
-    
+
     width: 180px;
-    height: 100px;
+    height: 80px;
     text-align: center;
-    padding: 10px 0px;
-    margin: 20px;
+    margin: 0px 20px;
+    padding: 5px;
     border-radius: 5px;
 
 }
-main #container .data div h2{
+main #container .data  div h2{
     padding: 18px;
 }
 main #container .data .infected{
@@ -129,39 +112,53 @@ main #container .data .discarded h2{
     font-family: 'Inter', sans-serif;
 }
 
-main #container .graphics{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+main #container .data .lethality{
+    background: rgb(161, 161, 161);
+}
+main #container .data .lethality h2{
+    color: rgb(22, 22, 22);
+    font-family: 'Inter', sans-serif;
+}
 
+
+main #container .graphics{
+    width: 1050px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 10px;
+    margin: 20px 0px;
 }
 main #container .graphics div{
     text-align: center;
     background: white;
     margin: 0px 20px;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 5px;
     box-shadow: 1px 1px 10px 1px rgba(27, 27, 27, 0.3);
+    width: 425px;
 }
 
 main #container .graphics canvas{
-    width: 500px !important;
-    height: 250px !important;
+    width: 400px !important;
+    height: 200px !important;
 }
 main #container .covInfo{
    display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
+   flex-direction: column;
    font-family: 'Red Hat Display', sans-serif;
-   padding: 20px 0px;
-}
-main #container .covInfo h2{
-    width: 60%;
+   padding: 20px 10px;
+
+   width: 1050px;
 
 }
-main #container .covInfo p{
-    width: 60%;
+main #container .covInfo h2{
+    margin: 0px 0px 5px 0px;
 }
+main #container .covInfo ul{
+    margin: 5px 50px;
+}
+
+
 main #container .form{
     display: flex;
     justify-content: center;
@@ -216,3 +213,7 @@ main #container .form #form button:hover{
     color: white;
     cursor: pointer;
 }
+
+
+
+

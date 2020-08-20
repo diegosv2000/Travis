@@ -1,0 +1,145 @@
+html.pushbar_locked {
+    overflow: hidden;
+    -ms-touch-action: none;
+    touch-action: none;
+}
+
+.pushbar_locked .pushbar_main_content.pushbar_blur {
+    filter: blur(15px);
+}
+
+.pushbar_overlay {
+    z-index: -999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    will-change: opacity;
+    transition: opacity 0.5s ease;
+    opacity: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+html.pushbar_locked .pushbar_overlay {
+    opacity: 0.8;
+    z-index: 999;
+}
+
+[data-pushbar-id] {
+    z-index: 1000;
+    position: fixed;
+    overflow-y: auto;
+    will-change: transform;
+    transition: transform 0.5s ease;
+    background: rgb(36, 36, 36);
+}
+
+[data-pushbar-direction="left"][data-pushbar-id], [data-pushbar-direction="right"][data-pushbar-id] {
+    top: 0;
+    width: 256px;
+    max-width: 100%;
+    height: 100%;
+}
+
+[data-pushbar-direction="top"][data-pushbar-id], [data-pushbar-direction="bottom"][data-pushbar-id] {
+    left: 0;
+    width: 100%;
+    min-height: 150px;
+}
+
+[data-pushbar-direction="left"][data-pushbar-id] {
+    left: 0;
+    transform: translateZ(0) translateX(-100%);
+}
+
+[data-pushbar-direction="right"][data-pushbar-id] {
+    right: 0;
+    transform: translateZ(0) translateX(100%);
+}
+
+[data-pushbar-direction="top"][data-pushbar-id] {
+    top: 0;
+    transform: translateZ(0) translateY(-100%);
+}
+
+[data-pushbar-direction="bottom"][data-pushbar-id] {
+    bottom: 0;
+    transform: translateZ(0) translateY(100%);
+}
+
+[data-pushbar-id].opened {
+    display: block;
+    transform: translateX(0px) translateY(0px);
+}
+
+.buttonMenu{
+    position: absolute;
+    right: 23px;
+    top: 20px;
+}
+.icoMenu{
+    font-size: 25px;
+    background: transparent;
+    border: none;
+    color: rgba(0, 0, 0, 0.7);
+    transition: .4s;
+}
+.icoMenu:hover{
+    cursor: pointer;
+    color: black;
+}
+.hiddenMenu .close{
+    position: relative;
+    left: 0px;
+    font-size: 20px;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    transition: .5s;
+}
+.hiddenMenu .close:hover{
+    color: azure;
+    cursor: pointer;
+}
+
+
+.hiddenMenu .hiddenMenuContainer{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+
+}
+.hiddenMenu .hiddenMenuContainer .img{
+    margin: 30px auto;
+
+}
+.hiddenMenu .hiddenMenuContainer .img img{
+    width: 95px;
+    height:95px;
+    border: none;
+    border-radius: 50%;
+}
+.hiddenMenu nav{
+    display: flex;
+    flex-direction: column;
+}
+.hiddenMenu nav button{
+    margin: 0px 50px 20px 50px;
+    font-size: 20px;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    transition: .3s;
+}
+.hiddenMenu nav button:hover{
+    cursor: pointer;
+    color: azure;
+}
+.hiddenMenu nav button:active{
+    color: rgb(128, 255, 212);
+}
