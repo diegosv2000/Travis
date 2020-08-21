@@ -22,8 +22,54 @@ const dataV = {
 }
 
 
-function Home(){
-    document.getElementById("container").innerHTML=` <h1>CORONAVIRUS(COVID-19)</h1><div class="data"><div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div><div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div><div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div><div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div><div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div></div><div class="graphics"><div><p>CasosTotales vs CasosActivos vs Fallecidos</p><canvas id="stat1"></canvas></div><div><p>CasosPositivos vs PruebasDescartadas</p><canvas id="stat2"></canvas></div></div><div class="covInfo"><h2>CORONAVIRUS</h2><p>La COVID‑19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto más recientemente. Tanto este nuevo virus como la enfermedad que provoca eran desconocidos antes de que estallara el brote en Wuhan (China) en diciembre de 2019. Actualmente la COVID‑19 es una pandemia que afecta a muchos países de todo el mundo. <br>Recomendaciones:<ul><li>Lávese las manos con frecuencia. Use agua y jabón o un desinfectante de manos a base de alcohol.</li><li>Manténgase a una distancia segura de cualquier persona que tosa o estornude.</li><li>No se toque los ojos, la nariz o la boca.</li><li>Cuando tosa o estornude, cúbrase la nariz y la boca con el codo flexionado o con un pañuelo.</li><li>Quédese en casa si se siente mal.</li><li>Si tiene fiebre, tos y dificultad para respirar, solicite atención médica. Llame con antelación.</li></ul></p></div> `;
+function Present(){
+    document.getElementById("container").innerHTML=` 
+    
+    <h1>CORONAVIRUS(COVID-19)</h1>
+        <div class="data">
+
+            
+                <div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div>
+                <div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div>
+                <div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div>
+
+                <div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div>
+                <div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div>
+                <div class="lethality">Letalidad <h2>${dataV.Lethality}%</h2> </div>     
+
+        </div>
+            <div class="graphics">
+            <div>
+            <p>CasosTotales vs CasosActivos vs Fallecidos</p>
+            <canvas id="stat1"></canvas>
+            </div>
+            <div>
+            <p>CasosPositivos vs PruebasDescartadas</p>
+            <canvas id="stat2"></canvas>
+            </div>
+            </div>
+            <div class="covInfo">
+                <h2>CORONAVIRUS</h2>
+                <p>
+                La COVID‑19 es la enfermedad infecciosa causada por el coronavirus que se ha descubierto
+                más recientemente. Tanto este nuevo virus como la enfermedad que provoca eran desconocidos
+                antes de que estallara el brote en Wuhan (China) en diciembre de 2019. Actualmente la 
+                COVID‑19 es una pandemia que afecta a muchos países de todo el mundo. <br>
+                Recomendaciones:
+                </p>
+                <ul>
+                    <li>Lávese las manos con frecuencia. Use agua y jabón o un desinfectante de manos a base de alcohol.</li>
+                    <li>Manténgase a una distancia segura de cualquier persona que tosa o estornude.</li>
+                    <li>No se toque los ojos, la nariz o la boca.</li>
+                    <li>Cuando tosa o estornude, cúbrase la nariz y la boca con el codo flexionado o con un pañuelo.</li>
+                    <li>Quédese en casa si se siente mal.</li>
+                    <li>Si tiene fiebre, tos y dificultad para respirar, solicite atención médica. Llame con antelación.</li>
+                </ul>
+                
+            </div>
+
+    
+    `;
 
     Statistics();
 }
@@ -131,7 +177,7 @@ function app(){
             document.getElementById("pushbarMenu").innerHTML=`
             
 
-                <button class="buttonNav" onclick="Home()">Home</button>
+                <button class="buttonNav" onclick="Present()">Actual (Covid-19)</button>
                 <button class="buttonNav" onclick="RegEn_Ex()">Registrar Visita</button>
                 <button class="buttonNav" onclick="Hist()">Historial</button>
                 <button class="buttonNav" onclick="SignOut()">Cerrar Sesión</button>
@@ -205,7 +251,7 @@ function app(){
         } else {
             document.getElementById("pushbarMenu").innerHTML=`
             
-                <button class="buttonNav" onclick="Home()">Home</button>
+                <button class="buttonNav" onclick="Present()">Actual (Covid-19)</button>
                 <button class="buttonNav" onclick="RegLoc()">Registrar Local</button>
                 <button class="buttonNav" onclick="LogIn()">Iniciar Sesión</button>
                 <button class="buttonNav" onclick="SignIn()">Crear Cuenta</button>
@@ -213,7 +259,7 @@ function app(){
             `;
             document.getElementById("pageContainer").innerHTML=`
                 <header>
-                    <a href="#"><img src="../img/Logo.png" alt="Logo"></a>
+                    <button ><img src="../img/Logo.png" alt="Logo"></button>
                 </header>
                 <main>
                     <div id="container">

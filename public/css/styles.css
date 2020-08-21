@@ -22,12 +22,21 @@ header{
 
 
 }
-header a{
+header button{
     margin: 5px;
-}
-header a img{
     width: 150px;
     height: 50px;
+    background: transparent;
+}
+header button img{
+    width: 145px;
+    height: 48px;
+    transition: .4s;
+}
+header button img:hover{
+    position: relative;
+    transform: scale(1.02);
+    cursor: pointer;
 }
 
 
@@ -151,11 +160,16 @@ main #container .covInfo{
    width: 1050px;
 
 }
+main #container .covInfo p{
+    text-align: justify;
+}
 main #container .covInfo h2{
     margin: 0px 0px 5px 0px;
+
 }
 main #container .covInfo ul{
     margin: 5px 50px;
+    text-align: justify;
 }
 
 
@@ -173,12 +187,13 @@ main #container .form #form{
     width: 270px;
     text-align: center;
     font-size: 25px;
-    font-family: 'Archivo Black', sans-serif;
+    font-family: 'Prompt', sans-serif;
     border: 1px solid rgb(195, 223, 255);
     border-radius: 5px;
     box-shadow: 2px 2px 10px 3px rgb(211, 227, 255);
     color: rgb(71, 79, 88);
 }
+
 main #container .form #form i{
     color: rgb(65, 65, 65);
     font-size: 12px;
@@ -208,10 +223,14 @@ main #container .form #form button{
     transition: 0.3s;
 }
 main #container .form #form button:hover{
-    background-color: rgb(142, 185, 235);
-    border: 1px solid rgb(193, 227, 255);
+    background-color: rgba(142, 206, 235, 0.774);
+    border: 1px solid rgb(193, 255, 203);
     color: white;
     cursor: pointer;
+}
+main #container .form #form button:active{
+    background-color: rgb(142, 235, 158);
+    border: 1px solid rgb(193, 227, 255);
 }
 
 
