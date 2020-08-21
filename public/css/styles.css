@@ -25,6 +25,7 @@ header{
 header button{
     margin: 5px;
     width: 150px;
+    border: none;
     height: 50px;
     background: transparent;
 }
@@ -34,9 +35,8 @@ header button img{
     transition: .4s;
 }
 header button img:hover{
-    position: relative;
-    transform: scale(1.02);
     cursor: pointer;
+    transform: scale(1.03);
 }
 
 
