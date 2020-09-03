@@ -20,11 +20,12 @@ function Users(){
     <div id="sContainer" class="sContainer">
         <i class="fas fa-search"></i>
 
-        <input type="number" placeholder="Ingresa el DNI">
+        <input type="number" placeholder="Ingresa el DNI" id="dni">
 
-        <button class="search" >Buscar</button>
+        <button onclick="searchUser()" class="search" >Buscar</button>
     </div>
     `;
+
 
     document.getElementById("writeHistory").innerHTML=`
     <div id="table">
@@ -53,6 +54,40 @@ function Users(){
     });
 
 }
+
+function searchUser(){
+    var dni = document.getElementById("dni").value;
+
+    document.getElementById("writeHistory").innerHTML=`
+    <div id="table">
+        <table>
+            <thead>
+                <th>DNI</th> <th>Email</th> <th>N° de Celular</th> <th>Dirección</th>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+    `;
+    document.getElementById("tbody").innerHTML="";
+    db.collection("users").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            
+
+            if( dni == doc.data().DNI ){
+                document.getElementById("tbody").innerHTML+=`
+                <tr>
+                    <td>${doc.data().DNI}</td> <td>${doc.data().Email}</td> <td>${doc.data().Phone}</td> <td>${doc.data().Adress}</td> <td> <button class="buttonHistory" onclick="dataUser('${doc.data().Email}')" >Historial</button></td> 
+                </tr> 
+                `;
+            }
+            
+
+        });
+    });
+
+}
+
 
 function dataUser(ID){
     document.getElementById("container").innerHTML=`
@@ -250,9 +285,9 @@ function Places(){
     <div id="sContainer" class="sContainer">
         <i class="fas fa-search"></i>
 
-        <input type="number" placeholder="Ingresa el ID del local">
+        <input type="number" placeholder="Ingresa el ID del local" id="id">
 
-        <button class="search" >Buscar</button>
+        <button class="search" onclick="searchPlace()" >Buscar</button>
     </div>
 
     
@@ -288,6 +323,39 @@ function Places(){
 
 }
 
+function searchPlace(){
+    var id = document.getElementById("id").value;
+
+    document.getElementById("writeHistory").innerHTML=`
+    <div id="table">
+        <table>
+            <thead>
+                <th>Telephone</th> <th>Nombre</th>  <th>Dirección</th>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+    </div>
+    `;
+    document.getElementById("tbody").innerHTML="";
+    db.collection("local").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            
+
+            if( id == doc.data().Telephone ){
+                document.getElementById("tbody").innerHTML+=`
+                <tr>
+                    <td>${doc.data().Telephone}</td> <td>${doc.data().Name}</td> <td>${doc.data().Adress}</td>
+                </tr> 
+                `;
+            }
+            
+
+        });
+    });
+}
+
+
 function logInWithEmail(){
     var email = document.getElementById("email").value;
     var psw = document.getElementById("psw").value;
@@ -318,7 +386,7 @@ function app(){
             `;
             document.getElementById("pageContainer").innerHTML=`
                 <header>
-                    <button ><img src="../../img/Logo.png" alt="Logo"></button>
+                    <button  onclick="location.reload()"><img src="../../img/Logo.png" alt="Logo"></button>
                 </header>
                 <main>
                     <div id="container">
@@ -326,9 +394,9 @@ function app(){
                         <div id="sContainer" class="sContainer">
                             <i class="fas fa-search"></i>
                     
-                            <input type="number" placeholder="Ingresa el DNI">
+                            <input type="number" placeholder="Ingresa el DNI" id="dni">
                     
-                            <button class="search" >Buscar</button>
+                            <button class="search" onclick="searchUser()">Buscar</button>
                         </div>
                     </div>
                 </main>
@@ -358,7 +426,7 @@ function app(){
             `;
             document.getElementById("pageContainer").innerHTML=`
                 <header>
-                    <button ><img src="../../img/Logo.png" alt="Logo"></button>
+                    <button  onclick="location.reload()"><img src="../../img/Logo.png" alt="Logo"></button>
                 </header>
                 <main>
                     <div id="container">

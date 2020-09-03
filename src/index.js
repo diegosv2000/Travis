@@ -186,7 +186,7 @@ function app(){
             `;
             document.getElementById("pageContainer").innerHTML=`
                 <header>
-                    <button ><img src="../img/Logo.png" alt="Logo"></button>
+                    <button onclick="location.reload()" ><img src="../img/Logo.png" alt="Logo"></button>
                 </header>
                 <main>
                     <div id="container">
@@ -259,7 +259,7 @@ function app(){
             `;
             document.getElementById("pageContainer").innerHTML=`
                 <header>
-                    <button ><img src="../img/Logo.png" alt="Logo"></button>
+                    <button  onclick="location.reload()"><img src="../img/Logo.png" alt="Logo"></button>
                 </header>
                 <main>
                     <div id="container">
