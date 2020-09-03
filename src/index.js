@@ -186,7 +186,7 @@ function app(){
             `;
             document.getElementById("pageContainer").innerHTML=`
                 <header>
-                    <a href="#"><img src="../img/Logo.png" alt="Logo"></a>
+                    <button ><img src="../img/Logo.png" alt="Logo"></button>
                 </header>
                 <main>
                     <div id="container">
@@ -324,7 +324,7 @@ function SignIn(){
             
             <label for="dni">DNI</label>
             <div>
-            <i class="fas fa-id-card"></i></i><input type="number" placeholder="72365298" name="dni" id="dni"  required>
+            <i class="fas fa-id-card"></i><input type="number" placeholder="72365298" name="dni" id="dni"  required>
             </div>
 
             <label for="phone">Celular</label>
@@ -388,10 +388,7 @@ function addNewUser(){
     });
 
     swal("", "Datos Registrados", "success");
-    document.getElementById("name").value = "";
-    document.getElementById("lName").value = "";
-    document.getElementById("email").value = "";
-    document.getElementById("psw").value = "";
+
 }
 
 
@@ -449,6 +446,7 @@ function RegEn_Ex(){
                 departure = new Date();
                 swal("", "Visita Registrada", "success");           
                 //Add New Visit
+                departureMinutess = 1 + departure.getMinutes();
                 db.collection("visit").add({
                     Email : userEmail,
                     IDLocal : phone,
@@ -461,7 +459,7 @@ function RegEn_Ex(){
                     entryMinutes : entry.getMinutes(),
     
                     departureHours : departure.getHours(),
-                    departureMinutes : departure.getMinutes()
+                    departureMinutes : departureMinutess
                     
                 })
                 .then(function(docRef) {
@@ -571,13 +569,13 @@ function Hist(){
     db.collection("visit").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             
-            if(userEmail == doc.data().Email){
+
                 document.getElementById("tbody").innerHTML+=`
                 <tr>
                     <td>${doc.data().IDLocal}</td> <td>${doc.data().entryHours}:${doc.data().entryMinutes}</td> <td>${doc.data().departureHours}:${doc.data().departureMinutes}</td> <td>${doc.data().dateDay}/${doc.data().dateMonth +1}/${doc.data().dateYear} </td> 
                 </tr> 
                 `;
-            }
+            
 
         });
     });

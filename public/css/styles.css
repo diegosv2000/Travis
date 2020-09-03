@@ -3,6 +3,11 @@
     padding: 0;
     outline: none;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 body{
     font-family: 'Do Hyeon', sans-serif;
     color: rgb(49, 49, 49);
@@ -78,11 +83,13 @@ main #container .data div{
     margin: 0px 20px;
     padding: 5px;
     border-radius: 5px;
-
+    transition: .5s;
 }
+
 main #container .data  div h2{
     padding: 18px;
 }
+
 main #container .data .infected{
     background: rgba(247, 212, 205);
 }
@@ -122,10 +129,11 @@ main #container .data .discarded h2{
 }
 
 main #container .data .lethality{
-    background: rgb(161, 161, 161);
+    background: rgb(255, 199, 192);
+
 }
 main #container .data .lethality h2{
-    color: rgb(22, 22, 22);
+    color: rgb(248, 20, 20);
     font-family: 'Inter', sans-serif;
 }
 
@@ -234,5 +242,141 @@ main #container .form #form button:active{
 }
 
 
+/*------------------------------------ Form Admi -------------------------------------------------*/
+
+.sContainer{
+    margin: 10px auto;
+    width: 600px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    font-size: 15px;
+    font-family: 'Prompt', sans-serif;
+    border: 1px solid rgb(238, 238, 238);
+    border-radius: 6px;
+    box-shadow: 1px 1px 1px 1px rgba(255, 0, 0, 0.1);
+
+}
+.sContainer input{
+    width: 350px;
+    height: 20px;
+    margin: 0 15px 0 5px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 14px;
+    background: whitesmoke;
+    border: 1px solid rgb(217, 235, 255);
+    box-shadow: 2px 2px 10px 1px rgb(211, 227, 255);
+}
+.sContainer i{
+    position: relative;
+    top: 6px;
+    color: rgb(130, 151, 175);
+}
+.sContainer button{
+    width: 100px;
+    padding: 5px;
+    font-size: 15px;
+    background: whitesmoke;
+    color: rgb(107, 147, 194);
+    border: 1px solid rgb(206, 220, 236);
+    border-radius: 4px;
+    transition: 0.3s;
+    margin: 0px 10px;
+}
+.sContainer button:hover{
+    color: rgb(76, 117, 204);
+    background: rgba(197, 213, 255, 0.568);
+    border: 1px solid rgba(0, 132, 255, 0.164);
+    cursor: pointer;
+}
 
 
+.formT{
+    background: whitesmoke;
+    width: 300px;
+    margin: 10px auto;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    text-align: center;
+    border: 1px solid rgb(195, 223, 255);
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px 3px rgb(211, 227, 255);
+    color: rgb(71, 79, 88);
+    
+}
+.formT .content{
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    width: 200px;
+    margin: 10px auto;
+    padding: 5px;
+}
+.formT .content p{
+    font-size: 20px;
+    font-family: 'Prompt', sans-serif;
+}
+.formT .content .divForm{
+    display: flex;
+    flex-direction: row;
+    font-size: 15px;
+    justify-content: center;
+    padding: 5px;
+}
+.formT .content #userTr{
+    font-size: 15px;
+}
+.formT .content #userTr i{
+    position: relative;
+    top: 2px;
+    
+}
+.formT .content #userTr input{
+    width: 100px;
+    margin: 0px 5px;
+    padding: 2px;
+    border-radius: 1px;
+    font-size: 10px;
+    background: whitesmoke;
+    border: 1px solid rgb(217, 235, 255);
+    box-shadow: 2px 2px 10px 1px rgb(211, 227, 255);
+}
+.formT .content .divForm .inputContent{
+    display: flex;
+    flex-direction: column;
+    margin: 0px 10px;
+}
+.formT .content .divForm .inputContent input{
+    width: 40px;
+    padding: 4px;
+    border-radius: 1px;
+    font-size: 10px;
+    background: whitesmoke;
+    border: 1px solid rgb(217, 235, 255);
+    box-shadow: 2px 2px 10px 1px rgb(211, 227, 255);
+    text-align: center;
+}
+.formT button{
+    width: 120px;
+    margin: 10px auto;
+    padding: 8px 0px;
+    font-size: 15px;
+    background: transparent;
+    border: 1px solid rgb(195, 233, 255);
+    border-radius: 4px;
+    transition: .4s;
+}
+.formT button:hover{
+    color: rgb(76, 117, 204);
+    background: rgba(197, 213, 255, 0.568);
+    border: 1px solid rgba(0, 132, 255, 0.164);
+    cursor: pointer;
+}
+.writeHistory{
+    width: 100%;
+}

@@ -12,13 +12,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2&display=swap" rel="stylesheet">
+    
+    <!--------------------------------- Font Awesome ----------------------------------------->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <!----------------------------------- Graphics ------------------------------------------->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
     <!-----------------------------------  Styles CSS  --------------------------------------->
-    <link rel="stylesheet" href="css/history.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/pushbar.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="../css/history.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/pushbar.css">
+    <link rel="stylesheet" href="../css/responsive.css">
     <!-------------------------------------  SWAL  ------------------------------------------->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <!-------------------------------  Firebase init  ---------------------------------------->
@@ -31,16 +34,14 @@
 
 </head>
 <body>
-    
     <div class="buttonMenu">
         <button class="icoMenu" data-pushbar-target="pushbar-menu"><i class="fas fa-bars"></i></button>
     </div>
-    
     <div class="hiddenMenu" data-pushbar-id="pushbar-menu" data-pushbar-direction="right">
         <button data-pushbar-close class="close"><i class="fas fa-times"></i></button>
         <div class="hiddenMenuContainer">
             <div class="img">
-                <img src="../img/LogoTravisIco.jpg" alt="Logo Travis">
+                <img src="../../img/LogoTravisIco.jpg" alt="Logo Travis">
             </div>
             <nav  id="pushbarMenu">
 
@@ -52,12 +53,15 @@
 
     </div>
 
+    <div id="writeHistory">
+
+    </div>
 
 
 
 </body>
-<script src="../src/pushbar.js"></script>
-<script src="../src/index.js"></script>
+<script src="../../src/pushbar.js"></script>
+<script src="../../src/admin.js"></script>
 
 <script>
     var pushbar = new Pushbar({
