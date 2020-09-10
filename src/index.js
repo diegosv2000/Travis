@@ -260,13 +260,13 @@ function app(){
                         <div class="data">
 
                             
-                                <div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div>
-                                <div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div>
-                                <div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div>
-
-                                <div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div>
-                                <div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div>
-                                <div class="lethality">Letalidad <h2>${dataV.Lethality}%</h2> </div>     
+                            <div class="infected">Casos Totales <h2 id="Total"></h2> </div>
+                            <div class="active">Casos Activos <h2 id="Actives"></h2>  </div>
+                            <div class="recovered">Recuperados <h2 id="Recovered"></h2> </div>
+            
+                            <div class="deceased">Fallecidos <h2 id="Deceased"></h2> </div>
+                            <div class="discarded">Descartados <h2 id="Discarded"></h2> </div>
+                            <div class="lethality">Letalidad <h2 id="Lethality"></h2> </div>    
 
                         </div>
                             <div class="graphics">
