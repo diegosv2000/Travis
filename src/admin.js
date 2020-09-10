@@ -31,7 +31,7 @@ function Users(){
     <div id="table">
         <table>
             <thead>
-                <th>DNI</th> <th>Email</th> <th>N° de Celular</th> <th>Dirección</th>
+                <th>DNI</th> <th>Email</th> <th>Celular</th> <th>Dirección</th>
             </thead>
             <tbody id="tbody">
             </tbody>
@@ -62,7 +62,7 @@ function searchUser(){
     <div id="table">
         <table>
             <thead>
-                <th>DNI</th> <th>Email</th> <th>N° de Celular</th> <th>Dirección</th>
+                <th>DNI</th> <th>Email</th> <th>Celular</th> <th>Dirección</th>
             </thead>
             <tbody id="tbody">
             </tbody>
@@ -208,12 +208,23 @@ function Tracking(){
 
         var dHours = document.getElementById("dHours").value;
         var dMinutes = document.getElementById("dMinutes").value; 
+
         var dateEntry = new Date(year,month,day,eHours,eMinutes);
         var personEntry;
         var personDeparture;
         var dateDeparture = new Date(year,month,day,dHours,dMinutes);
 
-
+        document.getElementById("writeHistory").innerHTML=`
+        <div id="table">
+            <table>
+                <thead>
+                    <th> DNI </th> <th> Email </th> <th>Celular</th> <th>Dirección</th>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+        `;
         
         db.collection("visit").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
@@ -223,20 +234,10 @@ function Tracking(){
                     db.collection("users").get().then((querySnapshot) => {
                         querySnapshot.forEach((doc2) => {             
 
-                            document.getElementById("writeHistory").innerHTML=`
-                            <div id="table">
-                                <table>
-                                    <thead>
-                                        <th> DNI </th> <th> Email </th> <th>Celular</th> <th>Dirección</th>
-                                    </thead>
-                                    <tbody id="tbody">
-                                    </tbody>
-                                </table>
-                            </div>
-                            `;
+
 
                             personEntry = new Date( doc.data().dateYear,doc.data().dateMonth,doc.data().dateDay,doc.data().entryHours,doc.data().entryMinutes);
-                            personDeparture = new Date(doc.data().dateYear,doc.data().dateMonth,doc.data().dateDay,doc.data().entryHours,doc.data().entryMinutes);
+                            personDeparture = new Date(doc.data().dateYear,doc.data().dateMonth,doc.data().dateDay,doc.data().departureHours,doc.data().departureMinutes);
 
                             console.log("dateEntry: ",dateEntry);
                             console.log("dateDeparture",dateDeparture);
@@ -248,22 +249,32 @@ function Tracking(){
 // ===========================================================================================================================================
 // ======================================= ANALYZE THE INTERVALS OF WHEN THEY DO NOT CROSS HERE ==============================================
 // ===========================================================================================================================================
+                            console.log(doc.data().Email, " <- <> -> ",doc2.data().Email );
+                            if( doc.data().Email == doc2.data().Email && !(  
+/*
 
-                            if( doc.data().Email == doc2.data().Email && (  
-                                ( personEntry <= dateEntry && dateEntry <= personDeparture && personDeparture <= dateDeparture ) ||
+                                ( personEntry <= dateEntry && dateEntry <= personDeparture && personDeparture <= dateDeparture ) || 
                                 ( dateEntry <= personEntry && personEntry <= dateDeparture && dateDeparture <= personDeparture ) ||
                                 ( personEntry <= dateEntry &&  dateDeparture <= personDeparture ) ||
-                                ( dateEntry <= personEntry && personDeparture <= dateDeparture )                                
+                                ( dateEntry <= personEntry && personDeparture <= dateDeparture )
+
+*/                              ( dateDeparture<=personEntry || personDeparture <=dateEntry )
                                 )
                             ){
                                 
 // ===========================================================================================================================================
-                                
+                                console.log(" \n ");
+                                console.log("========== ESTE FUNCIONA ============");
+                                console.log(doc2.data().DNI ," <- <> -> ", doc2.data().Email );
+                                console.log("<-> <-> <-> <-> <-> <-> <-> <-> <-> <-> <-> <-> <-> <-> ");
+                                console.log(" \n ");
+
                                 document.getElementById("tbody").innerHTML+=`
                                 <tr>
                                     <td>${doc2.data().DNI}</td> <td>${doc2.data().Email}</td> <td>${doc2.data().Phone}</td> <td>${doc2.data().Adress}</td>  
                                 </tr> 
                                 `;
+
                             }
 
 

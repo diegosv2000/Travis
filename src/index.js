@@ -12,14 +12,34 @@ firebase.initializeApp({
 var db = firebase.firestore();
 var userEmail;
 
-const dataV = {
-    Total : 407492,
-    Actives : 104556,
-    Recovered : 283915,
-    Deceased : 19021,
-    Discarded : 1975196,
-    Lethality: 4.85
-}
+var t,a,r,d,di,l;
+
+fetch("https://corona.lmao.ninja/v2/countries/Peru")
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+
+  
+    t = data.cases;
+    a = data.active;
+    r = data.recovered;
+    d = data.deaths;
+    di = data.tests - data.cases;
+    l = 4.85; 
+
+    document.getElementById("Total").innerHTML = data.cases;
+    document.getElementById("Actives").innerHTML = data.active;
+    document.getElementById("Recovered").innerHTML = data.recovered;
+    document.getElementById("Deceased").innerHTML = data.deaths;
+    document.getElementById("Discarded").innerHTML = data.tests -  data.cases;
+    document.getElementById("Lethality").innerHTML = 4.85 + '% ';
+    
+
+  });
+
+
+
 
 
 function Present(){
@@ -29,13 +49,13 @@ function Present(){
         <div class="data">
 
             
-                <div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div>
-                <div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div>
-                <div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div>
+                <div class="infected">Casos Totales <h2 id="Total"></h2> </div>
+                <div class="active">Casos Activos <h2 id="Actives"></h2>  </div>
+                <div class="recovered">Recuperados <h2 id="Recovered"></h2> </div>
 
-                <div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div>
-                <div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div>
-                <div class="lethality">Letalidad <h2>${dataV.Lethality}%</h2> </div>     
+                <div class="deceased">Fallecidos <h2 id="Deceased"></h2> </div>
+                <div class="discarded">Descartados <h2 id="Discarded"></h2> </div>
+                <div class="lethality">Letalidad <h2 id="Lethality"></h2> </div>     
 
         </div>
             <div class="graphics">
@@ -192,13 +212,13 @@ function app(){
                     <div id="container">
                     <h1>CORONAVIRUS(COVID-19)</h1>
                         <div class="data">
-                            <div class="infected">Casos Totales <h2>${dataV.Total}</h2> </div>
-                            <div class="active">Casos Activos <h2>${dataV.Actives}</h2>  </div>
-                            <div class="recovered">Recuperados <h2>${dataV.Recovered}</h2> </div>
-
-                            <div class="deceased">Fallecidos <h2>${dataV.Deceased}</h2> </div>
-                            <div class="discarded">Descartados <h2>${dataV.Discarded}</h2> </div>
-                            <div class="lethality">Letalidad <h2>${dataV.Lethality}%</h2> </div>          
+                        <div class="infected">Casos Totales <h2 id="Total"></h2> </div>
+                        <div class="active">Casos Activos <h2 id="Actives"></h2>  </div>
+                        <div class="recovered">Recuperados <h2 id="Recovered"></h2> </div>
+        
+                        <div class="deceased">Fallecidos <h2 id="Deceased"></h2> </div>
+                        <div class="discarded">Descartados <h2 id="Discarded"></h2> </div>
+                        <div class="lethality">Letalidad <h2 id="Lethality"></h2> </div>              
                         </div>
                             <div class="graphics">
                             <div>
@@ -590,49 +610,79 @@ function SignOut(){
 }
 
 function Statistics(){
-    var ctx= document.getElementById("stat1").getContext("2d");
-    var myChart= new Chart(ctx,{
-    type:"pie",
-    data:{
-        labels:['Casos Totales','Recuperados','Fallecidos'],
-        datasets:[{
-                label:'Num datos',
-                data:[dataV.Total,dataV.Recovered,dataV.Deceased],
-                backgroundColor:[
-                    'rgba(247, 212, 205)',
-                    'rgba(197, 232, 215)',
-                    'rgba(145, 145, 145 )'
-                ],
-        }]
-    },
-    options: {
-        responsive: false,
-        pointLabels:{
-            fontSize:500
+
+
+    fetch("https://corona.lmao.ninja/v2/countries/Peru")
+    .then((response) => {
+    return response.json();
+    })
+    .then((data) => {
+
+
+        t = data.cases;
+        a = data.active;
+        r = data.recovered;
+        d = data.deaths;
+        di = data.tests - data.cases;
+        l = 4.85; 
+
+        document.getElementById("Total").innerHTML = data.cases;
+        document.getElementById("Actives").innerHTML = data.active;
+        document.getElementById("Recovered").innerHTML = data.recovered;
+        document.getElementById("Deceased").innerHTML = data.deaths;
+        document.getElementById("Discarded").innerHTML = data.tests -  data.cases;
+        document.getElementById("Lethality").innerHTML = 4.85 + '% ';
+
+        var ctx= document.getElementById("stat1").getContext("2d");
+        var myChart= new Chart(ctx,{
+        type:"pie",
+        data:{
+            labels:['Casos Totales','Recuperados','Fallecidos'],
+            datasets:[{
+                    label:'Num datos',
+                    data:[data.active,data.recovered,data.deaths],
+                    backgroundColor:[
+                        'rgba(247, 212, 205)',
+                        'rgba(197, 232, 215)',
+                        'rgba(145, 145, 145 )'
+                    ],
+            }]
+        },
+        options: {
+            responsive: false,
+            pointLabels:{
+                fontSize:500
+            }
         }
-    }
+    
+        });
+    
+        var ctx= document.getElementById("stat2").getContext("2d");
+        var myChart= new Chart(ctx,{
+        type:"pie",
+        data:{
+            labels:['Casos Positivos','Pruebas Descartadas'],
+            datasets:[{
+                    label:'Num datos',
+                    data:[data.cases,data.tests - data.cases],
+                    backgroundColor:[
+                        'rgba(247, 212, 205)',
+                        'rgba(235, 205, 247)'
+                    ],
+            }]
+        },
+        options: {
+            responsive: false,
+            pointLabels:{
+                fontSize:500
+            }
+        }
+        });
+
+
+
 
     });
 
-    var ctx= document.getElementById("stat2").getContext("2d");
-    var myChart= new Chart(ctx,{
-    type:"pie",
-    data:{
-        labels:['Casos Positivos','Pruebas Descartadas'],
-        datasets:[{
-                label:'Num datos',
-                data:[dataV.Total,dataV.Discarded],
-                backgroundColor:[
-                    'rgba(247, 212, 205)',
-                    'rgba(235, 205, 247)'
-                ],
-        }]
-    },
-    options: {
-        responsive: false,
-        pointLabels:{
-            fontSize:500
-        }
-    }
-    });
+
 }
