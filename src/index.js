@@ -12,33 +12,6 @@ firebase.initializeApp({
 var db = firebase.firestore();
 var userEmail;
 
-var t,a,r,d,di,l;
-
-fetch("https://corona.lmao.ninja/v2/countries/Peru")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-
-  
-    t = data.cases;
-    a = data.active;
-    r = data.recovered;
-    d = data.deaths;
-    di = data.tests - data.cases;
-    l = 4.85; 
-
-    document.getElementById("Total").innerHTML = data.cases;
-    document.getElementById("Actives").innerHTML = data.active;
-    document.getElementById("Recovered").innerHTML = data.recovered;
-    document.getElementById("Deceased").innerHTML = data.deaths;
-    document.getElementById("Discarded").innerHTML = data.tests -  data.cases;
-    document.getElementById("Lethality").innerHTML = 4.85 + '% ';
-    
-
-  });
-
-
 
 
 
@@ -619,19 +592,14 @@ function Statistics(){
     .then((data) => {
 
 
-        t = data.cases;
-        a = data.active;
-        r = data.recovered;
-        d = data.deaths;
-        di = data.tests - data.cases;
-        l = 4.85; 
 
-        document.getElementById("Total").innerHTML = data.cases;
-        document.getElementById("Actives").innerHTML = data.active;
-        document.getElementById("Recovered").innerHTML = data.recovered;
-        document.getElementById("Deceased").innerHTML = data.deaths;
-        document.getElementById("Discarded").innerHTML = data.tests -  data.cases;
-        document.getElementById("Lethality").innerHTML = 4.85 + '% ';
+
+        document.getElementById("Total").innerHTML += data.cases;
+        document.getElementById("Actives").innerHTML += data.active;
+        document.getElementById("Recovered").innerHTML += data.recovered;
+        document.getElementById("Deceased").innerHTML += data.deaths;
+        document.getElementById("Discarded").innerHTML += data.tests -  data.cases;
+        document.getElementById("Lethality").innerHTML += 4.85 + '% ';
 
         var ctx= document.getElementById("stat1").getContext("2d");
         var myChart= new Chart(ctx,{
