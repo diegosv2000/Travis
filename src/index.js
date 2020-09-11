@@ -563,11 +563,13 @@ function Hist(){
         querySnapshot.forEach((doc) => {
             
 
+            if( userEmail == doc.data().Email ){
                 document.getElementById("tbody").innerHTML+=`
                 <tr>
                     <td>${doc.data().IDLocal}</td> <td>${doc.data().entryHours}:${doc.data().entryMinutes}</td> <td>${doc.data().departureHours}:${doc.data().departureMinutes}</td> <td>${doc.data().dateDay}/${doc.data().dateMonth +1}/${doc.data().dateYear} </td> 
                 </tr> 
                 `;
+            }
             
 
         });
